@@ -53,6 +53,7 @@ body {
 
 .video-wrapper {
 	position: relative;
+	z-index: 100;
 }
 
 .ui-wrapper {
