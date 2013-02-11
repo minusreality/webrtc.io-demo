@@ -1,14 +1,13 @@
 <html>
   <head>
-    <title>Example webrtc.io</title>
+    <title>Card Game</title>
     <link type="text/css" href="/style.css" rel="stylesheet"></link>
-
+		<script src="/jquery-1.9.1.min.js"></script>
     <script src="/webrtc.io.js"></script>
   </head>
   <body onload="init()">
     <div id="videos">
-      <a href="https://github.com/webRTC"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
-      <video id="you" class="flip" autoplay></video>
+      <video id="you" autoplay></video>
     </div>
     <div id="chatbox">
       <button id="fullscreen">Enter Full Screen</button>
@@ -64,6 +63,7 @@
       function cloneVideo(domId, socketId) {
         var video = document.getElementById(domId);
         var clone = video.cloneNode(false);
+				$('<button class="expand-video">Expand</button>').appendTo(clone);
         clone.id = "remote" + socketId;
         document.getElementById('videos').appendChild(clone);
         videos.push(clone);
