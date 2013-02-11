@@ -113,7 +113,6 @@
 				$(wrapper).css('height', height);
 				$(wrapper).css('position', 'absolute');
 				$(wrapper).css('z-index', '200');
-				// TODO: Center on screen
 				$(wrapper).css('top', '0');
 				$(wrapper).css('left', '0');
 				$(video).attr('width', width - 50);
@@ -125,8 +124,6 @@
 				var video = $(wrapper).find('video');
 				$(wrapper).css('position', 'relative');
 				$(wrapper).css('z-index', '100');
-				$(video).attr('width', width - 50);
-				$(video).attr('height', height - 50);
 				subdivideVideos();
 			}
 
