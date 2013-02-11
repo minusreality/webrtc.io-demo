@@ -56,8 +56,8 @@
         var width = Math.floor((window.innerWidth) / perRow);
         var height = Math.floor((window.innerHeight - 190) / perColumn);
 				wrapper = video.parentNode;
-        wrapper.width = width;
-        wrapper.height = height;
+        wrapper.style.width = width;
+        wrapper.style.height = height;
 				video.width = width;
 				video.height = height;
         wrapper.style.position = "absolute";
@@ -88,18 +88,20 @@
 				var button = document.createElement("button");
 				button.className = "expand-video";
 				button.innerHTML = "Expand";
-				button.onclick = function(event) {
-					var wrapper = $(this).parent().parent();
-					expandVideo( $(wrapper).attr('id') );
-					$(this).innerHTML = "Minimize";
-					$(this).unbind();
-					$(this).click = function(event) {
-						wrapper = $(this).parent().parent();
-						contractVideo( $(wrapper).attr('id') );
-					}
-				}
+				button.onclick = function() { toggleSize(button) };
 				uiWrapper.appendChild(button);
 				wrapper.appendChild(uiWrapper);
+			}
+
+			function toggleSize(button) {
+				var wrapper = $(button).parent().parent();
+				if (button.innerHTML == 'Expand') {
+					expandVideo( $(wrapper).attr('id') );
+					button.innerHTML = "Minimize";
+				} else {
+					contractVideo( $(wrapper).attr('id') );
+					button.innerHTML = "Expand";
+				}
 			}
 
 			function expandVideo(wrapperId) {
@@ -123,6 +125,8 @@
 				var video = $(wrapper).find('video');
 				$(wrapper).css('position', 'relative');
 				$(wrapper).css('z-index', '100');
+				$(video).attr('width', width - 50);
+				$(video).attr('height', height - 50);
 				subdivideVideos();
 			}
 
