@@ -50,3 +50,8 @@ body {
 .flip {
 -webkit-transform: rotateY(180deg);
 }
+
+.ui-wrapper {
+	width: 100%;
+	text-align: center;
+}

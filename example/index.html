@@ -58,6 +58,8 @@
 				wrapper = video.parentNode;
         wrapper.width = width;
         wrapper.height = height;
+				video.width = width;
+				video.height = height;
         wrapper.style.position = "absolute";
         wrapper.style.left = (i % perRow) * width + "px";
         wrapper.style.top = Math.floor(i / perRow) * height + "px";
@@ -81,12 +83,13 @@
 
 			function setupVideoUI(domId) {
 				var wrapper = document.getElementById('wrapper-' + domId);
-
+				var uiWrapper = document.createElement("div");
+				uiWrapper.className = "ui-wrapper";
 				var button = document.createElement("button");
 				button.className = "expand-video";
 				button.innerHTML = "Expand";
-
-				wrapper.appendChild(button);
+				uiWrapper.appendChild(button);
+				wrapper.appendChild(uiWrapper);
 			}
 
       function removeVideo(socketId) {
