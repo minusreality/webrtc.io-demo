@@ -7,7 +7,9 @@
   </head>
   <body onload="init()">
     <div id="videos">
-      <video id="you" autoplay></video>
+			<div id="wrapper-you" class="video-wrapper">
+				<video id="you" autoplay></video>
+			</div>
     </div>
     <div id="chatbox">
       <button id="fullscreen">Enter Full Screen</button>
@@ -67,6 +69,7 @@
 
 				var div = document.createElement("div");
 				div.id = "wrapper-remote" + socketId;
+				div.className = "video-wrapper";
 				div.appendChild(clone);
 				
 				document.getElementById('videos').appendChild(div);
@@ -76,15 +79,21 @@
       }
 
 			function setupVideoUI(domId) {
-				var video = document.getElementById(domId);
-				$('<button class="expand-video">Expand</button>').appendTo(video);
+				var wrapper = document.getElementById('wrapper-' + domId);
+
+				var button = document.createElement("button");
+				button.className = "expand-video";
+				button.innerHTML = "Expand";
+
+				wrapper.appendChild(button);
 			}
 
       function removeVideo(socketId) {
-        var video = document.getElementById('remote' + socketId);
+        var wrapper = document.getElementById('wrapper-remote' + socketId);
+				var video = document.getElementById('remote' + socketId);
         if (video) {
             videos.splice(videos.indexOf(video), 1);
-            video.parentNode.removeChild(video);
+            wrapper.parentNode.removeChild(wrapper);
         }
       }
 
