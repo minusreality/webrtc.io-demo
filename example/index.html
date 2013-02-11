@@ -63,12 +63,19 @@
       function cloneVideo(domId, socketId) {
         var video = document.getElementById(domId);
         var clone = video.cloneNode(false);
-				$('<button class="expand-video">Expand</button>').appendTo(clone);
+				
         clone.id = "remote" + socketId;
         document.getElementById('videos').appendChild(clone);
         videos.push(clone);
+				setupVideoUI(clone.id);
         return clone;
       }
+
+			function setupVideoUI(domId) {
+				var video = document.getElementById(domId);
+				$('<button class="expand-video">Expand</button>').appendTo(video);
+			}
+
       function removeVideo(socketId) {
         var video = document.getElementById('remote' + socketId);
         if (video) {
@@ -187,6 +194,7 @@
           rtc.createStream({"video": true, "audio": true}, function(stream) {
             document.getElementById('you').src = URL.createObjectURL(stream);
             videos.push(document.getElementById('you'));
+						setupVideoUI('you');
             //rtc.attachStream(stream, 'you');
             subdivideVideos();
           });

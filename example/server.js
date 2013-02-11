@@ -18,6 +18,10 @@ app.get('/webrtc.io.js', function(req, res) {
   res.sendfile(__dirname + '/webrtc.io.js');
 });
 
+app.get('/jquery-1.9.1.min.js', function(req, res) {
+  res.sendfile(__dirname + '/jquery-1.9.1.min.js');
+});
+
 
 webRTC.rtc.on('connect', function(rtc) {
   //Client connected
