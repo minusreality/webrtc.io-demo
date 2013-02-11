@@ -63,11 +63,15 @@
       function cloneVideo(domId, socketId) {
         var video = document.getElementById(domId);
         var clone = video.cloneNode(false);
+				clone.id = "remote" + socketId;
+
+				var div = document.createElement("div");
+				div.id = "wrapper-remote" + socketId;
+				div.appendChild(clone);
 				
-        clone.id = "remote" + socketId;
-        document.getElementById('videos').appendChild(clone);
+				document.getElementById('videos').appendChild(div);
+				setupVideoUI(div.id);
         videos.push(clone);
-				setupVideoUI(clone.id);
         return clone;
       }
 
