@@ -88,8 +88,19 @@
 				var button = document.createElement("button");
 				button.className = "expand-video";
 				button.innerHTML = "Expand";
+				button.onclick = function(event) {
+					var wrapper = $(this).parent().parent();
+					expandVideo(wrapper.id);
+				}
 				uiWrapper.appendChild(button);
 				wrapper.appendChild(uiWrapper);
+			}
+
+			function expandVideo(wrapperId) {
+				var wrapper = $('#'+wrapperId);
+				var video = $('#'+wrapperId).find('video');
+				$('#' + wrapper.id + ',' + '#' + video.id).css('width','500px');
+				$('#' + wrapper.id + ',' + '#' + video.id).css('height','500px');
 			}
 
       function removeVideo(socketId) {

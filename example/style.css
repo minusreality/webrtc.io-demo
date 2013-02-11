@@ -51,7 +51,13 @@ body {
 -webkit-transform: rotateY(180deg);
 }
 
+.video-wrapper {
+	position: relative;
+}
+
 .ui-wrapper {
+	position: relative;
 	width: 100%;
 	text-align: center;
+	z-index: 100;
 }
