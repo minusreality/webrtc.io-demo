@@ -82,7 +82,7 @@
       }
 
 			function setupVideoUI(domId) {
-				var wrapper = document.getElementById('wrapper-' + domId);
+				var wrapper = document.getElementById(domId);
 				var uiWrapper = document.createElement("div");
 				uiWrapper.className = "ui-wrapper";
 				var button = document.createElement("button");
@@ -91,6 +91,12 @@
 				button.onclick = function(event) {
 					var wrapper = $(this).parent().parent();
 					expandVideo( $(wrapper).attr('id') );
+					$(this).innerHTML = "Minimize";
+					$(this).unbind();
+					$(this).click = function(event) {
+						wrapper = $(this).parent().parent();
+						contractVideo( $(wrapper).attr('id') );
+					}
 				}
 				uiWrapper.appendChild(button);
 				wrapper.appendChild(uiWrapper);
@@ -103,8 +109,21 @@
         var height = window.innerHeight;
 				$(wrapper).css('width', width);
 				$(wrapper).css('height', height);
+				$(wrapper).css('position', 'absolute');
+				$(wrapper).css('z-index', '200');
+				// TODO: Center on screen
+				$(wrapper).css('top', '0');
+				$(wrapper).css('left', '0');
 				$(video).attr('width', width - 50);
 				$(video).attr('height', height - 50);
+			}
+
+			function contractVideo(wrapperId) {
+				var wrapper = $('#'+wrapperId);
+				var video = $(wrapper).find('video');
+				$(wrapper).css('position', 'relative');
+				$(wrapper).css('z-index', '100');
+				subdivideVideos();
 			}
 
       function removeVideo(socketId) {
@@ -226,7 +245,7 @@
           rtc.createStream({"video": true, "audio": true}, function(stream) {
             document.getElementById('you').src = URL.createObjectURL(stream);
             videos.push(document.getElementById('you'));
-						setupVideoUI('you');
+						setupVideoUI('wrapper-you');
             //rtc.attachStream(stream, 'you');
             subdivideVideos();
           });
