@@ -107,16 +107,16 @@
 			function expandVideo(wrapperId) {
 				var wrapper = $('#'+wrapperId);
 				var video = $(wrapper).find('video');
-				var width = window.innerWidth;
-        var height = window.innerHeight;
+				var width = 1280;//window.innerWidth;
+        var height = 720;// window.innerHeight;
 				$(wrapper).css('width', width);
 				$(wrapper).css('height', height);
 				$(wrapper).css('position', 'absolute');
 				$(wrapper).css('z-index', '200');
 				$(wrapper).css('top', '0');
 				$(wrapper).css('left', '0');
-				$(video).attr('width', width - 50);
-				$(video).attr('height', height - 50);
+				$(video).attr('width', width);// - 50);
+				$(video).attr('height', height);// - 50);
 			}
 
 			function contractVideo(wrapperId) {
